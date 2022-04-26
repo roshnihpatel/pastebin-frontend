@@ -6,6 +6,10 @@ interface Paste {
   content: string;
   title: string;
 }
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://roshni-christian-pastebin.herokuapp.com"
+    : "https://roshni-christian-pastebin.herokuapp.com";
 
 export default function MainContent(): JSX.Element {
   const [content, setContent] = useState<string>("");
@@ -15,10 +19,7 @@ export default function MainContent(): JSX.Element {
 
   const handleClick = async () => {
     const data = { content: content, title: title };
-    await axios.post(
-      "https://roshni-christian-pastebin.herokuapp.com/pastes",
-      data
-    );
+    await axios.post(`${baseUrl}/pastes`, data);
     const counterPlusOne = counter + 1;
     setCounter(counterPlusOne);
     console.log(counter);
@@ -28,13 +29,11 @@ export default function MainContent(): JSX.Element {
 
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get("https://roshni-christian-pastebin.herokuapp.com/pastes")
-        .then((response) => {
-          const data = response.data;
-          setPastes(data);
-          console.log(data);
-        });
+      await axios.get(`${baseUrl}/pastes`).then((response) => {
+        const data = response.data;
+        setPastes(data);
+        console.log(data);
+      });
     };
     fetchData();
   }, [counter]);
