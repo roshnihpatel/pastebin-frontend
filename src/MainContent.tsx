@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Collapsible from "./Collapsible";
 
-interface Paste {
+export interface Paste {
   id: number;
   content: string;
   title: string;
@@ -48,22 +49,16 @@ export default function MainContent(): JSX.Element {
         onChange={(e) => setTitle(e.target.value)}
       />
       <input
-        className="input"
+        className="content-input"
         placeholder="type here"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
       <button onClick={handleClick}>Submit</button>
 
-      <ul>
-        {pastes.map((paste) => {
-          return (
-            <li key={paste.id}>
-              {paste.title}:{paste.content}
-            </li>
-          );
-        })}
-      </ul>
+      {pastes.map((paste) => (
+        <Collapsible key={paste.id} paste={paste} />
+      ))}
     </>
   );
 }
