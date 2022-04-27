@@ -13,17 +13,32 @@ export default function MainContent(): JSX.Element {
   const [pastes, setPastes] = useState<Paste[]>([]);
   const [counter, setCounter] = useState<number>(0);
 
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(
+        `https://roshni-christian-pastebin.herokuapp.com/pastes/${id}`
+      );
+      setPastes(pastes.filter((paste) => paste.id !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleClick = async () => {
     const data = { content: content, title: title };
-    await axios.post(
-      "https://roshni-christian-pastebin.herokuapp.com/pastes",
-      data
-    );
-    const counterPlusOne = counter + 1;
-    setCounter(counterPlusOne);
-    console.log(counter);
-    setContent("");
-    setTitle("");
+    if (content.length === 0) {
+      window.alert("can't have an empty paste");
+    } else {
+      await axios.post(
+        "https://roshni-christian-pastebin.herokuapp.com/pastes",
+        data
+      );
+      const counterPlusOne = counter + 1;
+      setCounter(counterPlusOne);
+      console.log(counter);
+      setContent("");
+      setTitle("");
+    }
   };
 
   useEffect(() => {
@@ -60,6 +75,12 @@ export default function MainContent(): JSX.Element {
           return (
             <li key={paste.id}>
               {paste.title}:{paste.content}
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(paste.id)}
+              >
+                Delete
+              </button>
             </li>
           );
         })}
