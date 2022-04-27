@@ -20,12 +20,12 @@ export default function Comments({ paste_id }: Props): JSX.Element {
     try {
       const data = { comment: newComment };
       console.log(newComment);
-      axios.post(
+      await axios.post(
         `https://roshni-christian-pastebin.herokuapp.com/pastes/${paste_id}/comment`,
-        data
-      );
+        data);
       setNewComment("");
-      setCounter((counter) => counter + 1);
+      const counterPlusOne = counter + 1
+      setCounter(counterPlusOne);
     } catch (err) {
       console.log(err);
     }
