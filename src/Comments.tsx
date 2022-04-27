@@ -16,19 +16,23 @@ export default function Comments({ paste_id }: Props): JSX.Element {
   const [newComment, setNewComment] = useState<string>("");
   const [counter, setCounter] = useState<number>(0);
 
-  const handleClick = async () => {
-    try {
-      const data = { comment: newComment };
-      console.log(newComment);
-      await axios.post(
-        `https://roshni-christian-pastebin.herokuapp.com/pastes/${paste_id}/comment`,
-        data
-      );
-      setNewComment("");
-      const counterPlusOne = counter + 1;
-      setCounter(counterPlusOne);
-    } catch (err) {
-      console.log(err);
+  const handleAddComment = async () => {
+    if (newComment.length === 0) {
+      window.alert("Cannot post empty comment");
+    } else {
+      try {
+        const data = { comment: newComment };
+        console.log(newComment);
+        await axios.post(
+          `https://roshni-christian-pastebin.herokuapp.com/pastes/${paste_id}/comment`,
+          data
+        );
+        setNewComment("");
+        const counterPlusOne = counter + 1;
+        setCounter(counterPlusOne);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
   const handleDeleteComment = async (comment_id: number) => {
@@ -63,7 +67,7 @@ export default function Comments({ paste_id }: Props): JSX.Element {
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
       />
-      <button onClick={handleClick}>post</button>
+      <button onClick={handleAddComment}>post</button>
       <div key={paste_id} className="comments-section">
         <ul>
           {comments.map((comment) => {
