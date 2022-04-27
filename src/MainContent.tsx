@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Comments from "./Comments";
+import useCollapse from "react-collapsed";
 
 interface Paste {
   id: number;
@@ -71,22 +72,67 @@ export default function MainContent(): JSX.Element {
       />
       <button onClick={handleClick}>Submit</button>
 
-      <ul>
+      <div>
         {pastes.map((paste) => {
           return (
-            <li key={paste.id}>
-              {paste.title}:{paste.content}
+            <div key={paste.id}>
+              <CollapsibleContent
+                id={paste.id}
+                title={paste.title}
+                content={paste.content}
+                handleDelete={handleDelete}
+              />
+              {/* <div key={paste.id}>
+              <button {...getToggleProps()}>
+                {isExpanded ? `${paste.title}` : `${paste.title}:${paste.content}`}
+              </button>
+              <section {...getCollapseProps()}>{paste.content} \
+              <Comments paste_id={paste.id} /> 
               <button
                 className="delete-button"
                 onClick={() => handleDelete(paste.id)}
               >
                 Delete
               </button>
-              <Comments paste_id={paste.id} />
-            </li>
+              </section>
+              
+              
+            </div> */}
+            </div>
           );
         })}
-      </ul>
+      </div>
     </>
+  );
+}
+
+interface CollapsibleContentProps {
+  id: number;
+  content: string;
+  title: string;
+  handleDelete: (id: number) => Promise<void>;
+}
+
+function CollapsibleContent({
+  id,
+  content,
+  title,
+  handleDelete,
+}: CollapsibleContentProps): JSX.Element {
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+
+  return (
+    <div>
+      <button {...getToggleProps()}>
+        {isExpanded ? `${title}` : `${title}:${content}`}
+      </button>
+      <section {...getCollapseProps()}>
+        {content} \
+        <Comments paste_id={id} />
+        <button className="delete-button" onClick={() => handleDelete(id)}>
+          Delete
+        </button>
+      </section>
+    </div>
   );
 }
