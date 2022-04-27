@@ -15,15 +15,18 @@ export default function MainContent(): JSX.Element {
 
   const handleClick = async () => {
     const data = { content: content, title: title };
-    await axios.post(
-      "https://roshni-christian-pastebin.herokuapp.com/pastes",
-      data
-    );
-    const counterPlusOne = counter + 1;
-    setCounter(counterPlusOne);
-    console.log(counter);
-    setContent("");
-    setTitle("");
+    if(content.length === 0){
+        window.alert("can't have an empty paste")
+    }else{await axios.post(
+        "https://roshni-christian-pastebin.herokuapp.com/pastes",
+        data
+      );
+      const counterPlusOne = counter + 1;
+      setCounter(counterPlusOne);
+      console.log(counter);
+      setContent("");
+      setTitle("");}
+    
   };
 
   useEffect(() => {
