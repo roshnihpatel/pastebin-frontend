@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Comments from "./Comments";
 
 interface Paste {
   id: number;
@@ -81,6 +82,7 @@ export default function MainContent(): JSX.Element {
               >
                 Delete
               </button>
+              <Comments paste_id={paste.id} />
             </li>
           );
         })}
