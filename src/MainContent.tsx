@@ -15,9 +15,10 @@ export default function MainContent(): JSX.Element {
 
   const handleClick = async () => {
     const data = { content: content, title: title };
-    if(content.length === 0){
-        window.alert("can't have an empty paste")
-    }else{await axios.post(
+    if (content.length === 0) {
+      window.alert("can't have an empty paste");
+    } else {
+      await axios.post(
         "https://roshni-christian-pastebin.herokuapp.com/pastes",
         data
       );
@@ -25,8 +26,8 @@ export default function MainContent(): JSX.Element {
       setCounter(counterPlusOne);
       console.log(counter);
       setContent("");
-      setTitle("");}
-    
+      setTitle("");
+    }
   };
 
   useEffect(() => {
