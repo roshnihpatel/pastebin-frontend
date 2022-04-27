@@ -22,9 +22,10 @@ export default function Comments({ paste_id }: Props): JSX.Element {
       console.log(newComment);
       await axios.post(
         `https://roshni-christian-pastebin.herokuapp.com/pastes/${paste_id}/comment`,
-        data);
+        data
+      );
       setNewComment("");
-      const counterPlusOne = counter + 1
+      const counterPlusOne = counter + 1;
       setCounter(counterPlusOne);
     } catch (err) {
       console.log(err);
