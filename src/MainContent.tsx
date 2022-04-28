@@ -26,20 +26,24 @@ export default function MainContent(): JSX.Element {
     }
   };
 
-  const handleClick = async () => {
+  const handleAdd = async () => {
     const data = { content: content, title: title };
     if (content.length === 0) {
       window.alert("can't have an empty paste");
     } else {
-      await axios.post(
-        "https://roshni-christian-pastebin.herokuapp.com/pastes",
-        data
-      );
-      const counterPlusOne = counter + 1;
-      setCounter(counterPlusOne);
-      console.log(counter);
-      setContent("");
-      setTitle("");
+      try {
+        await axios.post(
+          "https://roshni-christian-pastebin.herokuapp.com/pastes",
+          data
+        );
+        const counterPlusOne = counter + 1;
+        setCounter(counterPlusOne);
+        console.log(counter);
+        setContent("");
+        setTitle("");
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -58,19 +62,22 @@ export default function MainContent(): JSX.Element {
 
   return (
     <>
+      <h1 className="title">Roshni-Christian-Pastebin-App</h1>
       <input
         className="title-input"
-        placeholder="type here"
+        placeholder="title..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <input
+      <textarea
         className="input"
-        placeholder="type here"
+        placeholder="paste..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <button onClick={handleClick}>Submit</button>
+      <button className="submit-button" onClick={handleAdd}>
+        Submit
+      </button>
 
       <div>
         {pastes.map((paste) => {
@@ -82,22 +89,6 @@ export default function MainContent(): JSX.Element {
                 content={paste.content}
                 handleDelete={handleDelete}
               />
-              {/* <div key={paste.id}>
-              <button {...getToggleProps()}>
-                {isExpanded ? `${paste.title}` : `${paste.title}:${paste.content}`}
-              </button>
-              <section {...getCollapseProps()}>{paste.content} \
-              <Comments paste_id={paste.id} /> 
-              <button
-                className="delete-button"
-                onClick={() => handleDelete(paste.id)}
-              >
-                Delete
-              </button>
-              </section>
-              
-              
-            </div> */}
             </div>
           );
         })}
@@ -106,6 +97,7 @@ export default function MainContent(): JSX.Element {
   );
 }
 
+///////////////////////////////////////////////////////////
 interface CollapsibleContentProps {
   id: number;
   content: string;
@@ -123,11 +115,11 @@ function CollapsibleContent({
 
   return (
     <div>
-      <button {...getToggleProps()}>
+      <button {...getToggleProps()} className="collapsible-content">
         {isExpanded ? `${title}` : `${title}:${content}`}
       </button>
-      <section {...getCollapseProps()}>
-        {content} \
+      <section {...getCollapseProps()} className="expanded-content">
+        {content} <br />
         <Comments paste_id={id} />
         <button className="delete-button" onClick={() => handleDelete(id)}>
           Delete

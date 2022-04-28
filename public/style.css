@@ -18,7 +18,7 @@
     border: 3px solid #555;
   }
 
-button {
+.submit-button {
         background-color: #04AA6D;
         border: none;
         color: white;
@@ -27,3 +27,32 @@ button {
         margin: 4px 2px;
         cursor: pointer;
       }
+
+.collapsible-content {
+  font-size: 20px;
+  max-height: 130px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 20px;
+  overflow:hidden;
+  border-color: #04AA6D;
+  border-style: solid;
+  border-radius: 6px;
+  border-width: 3px;
+  background-color: white;
+}
+
+.expanded-content {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.title {
+  text-align: center;
+  color: #04AA6D;
+  font-size: 40px;
+  text-decoration: underline;
+  margin-bottom: -3px;
+}
