@@ -44,9 +44,17 @@
 }
 
 .expanded-content {
-  width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-top: 10px;
+  text-align: center;
+  border-color: #04AA6D;
+  border-style: solid;
+  border-radius: 6px;
+  border-width: 3px;
+  margin-top: 4px;
+  padding-bottom: 10px;
 }
 
 .title {
@@ -58,4 +66,47 @@
   height: 60px;
   margin-bottom: -2px;
   text-align: center;
+}
+
+.comment-list {
+  
+  
+  
+  margin: 4px 0;
+  padding: 0 10px;
+  
+}
+
+.single-comment {
+  padding: 10px 5px;
+  border:solid;
+  border-color: darkgreen;
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 4px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.comment-title {
+  text-align: center;
+  color: rgb(54, 175, 46);
+  font-size: 25px;
+}
+
+.comment-input {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.delete-paste {
+  text-align: center;
+}
+
+.paste-title {
+  text-align: center; 
+  font-size: 35px;
+  margin-bottom: -7px;
+  color: hotpink;
 }
