@@ -64,17 +64,20 @@ export default function Comments({ paste_id }: Props): JSX.Element {
   return (
     <>
       <div className="comments">
-        
-        {comments.length !== 0 ? <h3 className = 'comment-title'>Comments</h3> : <h3 className = 'comment-title'>No comments yet</h3>}
-        <div className = 'comment-input'>
-        <input 
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-        />
-        <button onClick={handleAddComment}>post</button>
+        {comments.length !== 0 ? (
+          <h3 className="comment-title">Comments</h3>
+        ) : (
+          <h3 className="comment-title">No comments yet</h3>
+        )}
+        <div className="comment-input">
+          <input
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+          <button onClick={handleAddComment}>post</button>
         </div>
         <div key={paste_id} className="comments-section">
-          <div className = 'comment-list'>
+          <div className="comment-list">
             {comments.map((comment) => {
               return (
                 <div key={comment.id} className="single-comment">

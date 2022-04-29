@@ -80,7 +80,7 @@ export default function MainContent(): JSX.Element {
       </button>
 
       <div>
-        <h2 className = 'paste-title'>Pastes</h2>
+        <h2 className="paste-title">Pastes</h2>
         {pastes.map((paste) => {
           return (
             <div key={paste.id}>
