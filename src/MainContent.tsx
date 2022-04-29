@@ -48,8 +48,8 @@ export default function MainContent(): JSX.Element {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
+    const fetchData = () => {
+       axios
         .get("https://roshni-christian-pastebin.herokuapp.com/pastes")
         .then((response) => {
           const data = response.data;
