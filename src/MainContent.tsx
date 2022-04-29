@@ -80,6 +80,7 @@ export default function MainContent(): JSX.Element {
       </button>
 
       <div>
+        <h2 className="paste-title">Pastes</h2>
         {pastes.map((paste) => {
           return (
             <div key={paste.id}>
@@ -121,8 +122,8 @@ function CollapsibleContent({
       <section {...getCollapseProps()} className="expanded-content">
         {content} <br />
         <Comments paste_id={id} />
-        <button className="delete-button" onClick={() => handleDelete(id)}>
-          Delete
+        <button className="delete-paste" onClick={() => handleDelete(id)}>
+          Delete Paste
         </button>
       </section>
     </div>
