@@ -50,9 +50,12 @@
 }
 
 .title {
-  text-align: center;
-  color: #04AA6D;
+  
+  color: white;
   font-size: 40px;
-  text-decoration: underline;
-  margin-bottom: -3px;
+  background: #04AA6D;
+  margin: 0;
+  height: 60px;
+  margin-bottom: -2px;
+  text-align: center;
 }
