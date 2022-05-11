@@ -1,0 +1,61 @@
+.input  {
+    width: 100%;
+    height: 300px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+ 
+
+  .title-input  {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  /*input comonents bordered when typing in them*/
+  input[type=text]:focus {
+    border: 3px solid #555;
+  }
+
+.submit-button {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+.collapsible-content {
+  font-size: 20px;
+  max-height: 130px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 20px;
+  overflow:hidden;
+  border-color: #04AA6D;
+  border-style: solid;
+  border-radius: 6px;
+  border-width: 3px;
+  background-color: white;
+}
+
+.expanded-content {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.title {
+  
+  color: white;
+  font-size: 40px;
+  background: #04AA6D;
+  margin: 0;
+  height: 60px;
+  margin-bottom: -2px;
+  text-align: center;
+}
